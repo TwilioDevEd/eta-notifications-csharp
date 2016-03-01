@@ -24,7 +24,6 @@ namespace ETANotifications.Tests.Controllers
     {
         private Mock<INotificationService> _notificationServiceMock;
         private IOrderRepository _orderRepository;
-        private HttpContext _context;
 
         [SetUp]
         public void Setup()
@@ -34,10 +33,6 @@ namespace ETANotifications.Tests.Controllers
 
             _notificationServiceMock
                 .Setup(c => c.SendSmsNotification(It.IsAny<String>(), It.IsAny<String>(), It.IsAny<String>()));
-
-            var sb = new StringBuilder();
-            TextWriter w = new StringWriter(sb);
-            _context = new HttpContext(new HttpRequest("", "http://www.example.com", ""), new HttpResponse(w));
         }
 
         [Test]
