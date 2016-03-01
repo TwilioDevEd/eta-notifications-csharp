@@ -30,6 +30,12 @@ GPS tracking implementation with ASP.NET MVC and Twilio
 
 1. Build the solution.
 
+1. Run migrations by executing the following in the Package Manager Console
+
+  	```bash
+    PM> Update-Database
+    ```
+
 1. Run the application.
 
 1. Check it out at [http://localhost:1928](http://localhost:1928)
