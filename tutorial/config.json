@@ -1,0 +1,6 @@
+{
+    "title": "ETA Notifications",
+    "repo": "TwilioDevEd/eta-notifications-csharp",
+    "description": "In this tutorial, we will learn how to implement ETA Notifications using ASP.NET MVC and Twilio",
+    "heroku": false
+}
