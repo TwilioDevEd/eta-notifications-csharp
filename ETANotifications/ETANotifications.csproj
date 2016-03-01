@@ -148,6 +148,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603011437505_InitialCreate.cs" />
+    <Compile Include="Migrations\201603011437505_InitialCreate.Designer.cs">
+      <DependentUpon>201603011437505_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\OrderContext.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Repository\OrderRepository.cs" />
@@ -217,6 +222,11 @@
     </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603011437505_InitialCreate.resx">
+      <DependentUpon>201603011437505_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

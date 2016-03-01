@@ -30,7 +30,7 @@
     </div>
     <div class="row show-button-row">
         <div class="col-xs-12 text-center">
-            @using (Html.BeginForm("Pickup", "Orders", FormMethod.Post, new {id = Model.Id}))
+            @using (Html.BeginForm("Pickup", "Orders", new { id = Model.Id }, FormMethod.Post))
             {
                 <button type="submit" class="btn show-button">
                     <div class="col-xs-3 text-center">
@@ -45,7 +45,7 @@
     </div>
     <div class="row show-button-row">
         <div class="col-xs-12 text-center">
-            @using (Html.BeginForm("Deliver", "Orders", FormMethod.Post, new { id = Model.Id }))
+            @using (Html.BeginForm("Deliver", "Orders", new { id = Model.Id }, FormMethod.Post))
             {
                 <button type="submit" class="btn show-button">
                     <div class="col-xs-6 col-xs-offset-3 text-center">
