@@ -54,10 +54,10 @@ namespace ETANotifications.Controllers
             Order order = await _orderRepository.FindAsync(id);
             order.Status = "Shipped";
             order.NotificationStatus = "Queued";
+            await _orderRepository.UpdateAsync(order);
 
             _notificationServices.SendSmsNotification(order.CustomerPhoneNumber
                 , "Your clothes will be sent and will be delivered in 20 minutes", GetCallbackUri(id));
-            await _orderRepository.UpdateAsync(order);
             return RedirectToAction("Details", new { id = id });
         }
 
@@ -68,10 +68,10 @@ namespace ETANotifications.Controllers
             Order order = await _orderRepository.FindAsync(id);
             order.Status = "Delivered";
             order.NotificationStatus = "Queued";
+            await _orderRepository.UpdateAsync(order);
 
             _notificationServices.SendSmsNotification(order.CustomerPhoneNumber
                 , "Your clothes have been delivered", GetCallbackUri(id));
-            await _orderRepository.UpdateAsync(order);
             return RedirectToAction("Details", new { id = id });
         }
 
