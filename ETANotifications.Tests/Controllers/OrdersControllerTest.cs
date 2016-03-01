@@ -85,7 +85,7 @@ namespace ETANotifications.Tests.Controllers
         {
             var controller = BuildController(_orderRepository, _notificationServiceMock.Object);
 
-            controller.WithCallTo(c => c.UpateNotificationStatus(1, "sent"))
+            controller.WithCallTo(c => c.UpdateNotificationStatus(1, "sent"))
                 .ShouldGiveHttpStatus(HttpStatusCode.OK);
 
             Assert.That(_orderRepository.FindAsync(1).GetAwaiter().GetResult().NotificationStatus, Is.EqualTo("Sent"));

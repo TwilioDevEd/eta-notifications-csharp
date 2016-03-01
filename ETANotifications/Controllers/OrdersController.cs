@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using ETANotifications.Models;
 using ETANotifications.Models.Repository;
@@ -15,7 +16,7 @@ namespace ETANotifications.Controllers
         private readonly IOrderRepository _orderRepository;
         private readonly INotificationService _notificationServices;
 
-        public OrdersController(): this(new OrderRepository(), new NotificationServices())
+        public OrdersController() : this(new OrderRepository(), new NotificationServices())
         {
         }
 
@@ -28,7 +29,6 @@ namespace ETANotifications.Controllers
         // GET: Orders
         public async Task<ActionResult> Index()
         {
-            var test = GetCallbackUri(0);
             return View(await _orderRepository.FindAllAsync());
         }
 
@@ -58,7 +58,7 @@ namespace ETANotifications.Controllers
             _notificationServices.SendSmsNotification(order.CustomerPhoneNumber
                 , "Your clothes will be sent and will be delivered in 20 minutes", GetCallbackUri(id));
             await _orderRepository.UpdateAsync(order);
-            return RedirectToAction("Details", new { id = id});
+            return RedirectToAction("Details", new { id = id });
         }
 
         // POST: Orders/Deliver/5
@@ -77,7 +77,7 @@ namespace ETANotifications.Controllers
 
         // POST: Orders/UpateNotificationStatus/5
         [HttpPost]
-        public async Task<ActionResult> UpateNotificationStatus(int id, string MessageStatus)
+        public async Task<ActionResult> UpdateNotificationStatus(int id, string MessageStatus)
         {
             Order order = await _orderRepository.FindAsync(id);
             order.NotificationStatus = MessageStatus.First().ToString().ToUpper() + MessageStatus.Substring(1);
@@ -88,7 +88,10 @@ namespace ETANotifications.Controllers
 
         protected string GetCallbackUri(int id)
         {
-            return Url.Action("Orders", "UpdateNotificationStatus", new { id = id }, Request.Url.Scheme);
+            Uri requestUrl = Url.RequestContext.HttpContext.Request.Url;
+
+            return $"{requestUrl.Scheme}://{WebConfigurationManager.AppSettings["TestDomain"]}" +
+                   $"{Url.Action("UpdateNotificationStatus", "Orders", new {id = id})}";
         }
 
         protected override void Dispose(bool disposing)
