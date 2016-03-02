@@ -6,14 +6,14 @@ GPS tracking implementation with ASP.NET MVC and Twilio
 
 ### Local development
 
-1. First clone this repository and `cd` into its directory:
+1. First clone this repository and `cd` into it
    ```
    git clone git@github.com:TwilioDevEd/eta-notifications-csharp.git
 
    cd eta-notifications-csharp
    ```
 
-1. Create a new file `ETANotifications/Local.config` and update the content with:
+1. Create a new file `ETANotifications/Local.config` and update the content with
 
    ```
     <appSettings>
@@ -23,12 +23,12 @@ GPS tracking implementation with ASP.NET MVC and Twilio
       <add key="TestDomain" value="[your-ngrok-subdomain].ngrok.io"/>
     </appSettings>
    ```
-   Be sure to replace placeholders like `your_account_SID`, `your_twilio_auth_token` and `your_twilio_number` with real information from your
+   Be sure to replace placeholders like `your_account_SID`, `your_twilio_auth_token` and `your_twilio_number` with valid information from your
    [Twilio Account Settings](https://www.twilio.com/user/account/settings).
 
    For better understanding while replacing ```[your-ngrok-subdomain]``` placeholder see [Exposing the application to Internet](#ngrok) section
 
-1. Build the solution.
+1. Build the solution
 
 1. Run migrations by executing the following in the Package Manager Console
 
@@ -36,7 +36,7 @@ GPS tracking implementation with ASP.NET MVC and Twilio
     PM> Update-Database
     ```
 
-1. Run the application.
+1. Run the application
 
 1. Check it out at [http://localhost:1928](http://localhost:1928)
 
@@ -44,7 +44,7 @@ That's it!
 
 #### Exposing the application to Internet<a name="ngrok">
 
-Some application's endpoints needs to be publicly accessible. [We recommend using ngrok to solve this problem](https://www.twilio.com/blog/2015/09/6-awesome-reasons-to-use-ngrok-when-testing-webhooks.html) like this
+Some application's endpoints need to be publicly accessible. [We recommend using ngrok](https://www.twilio.com/blog/2015/09/6-awesome-reasons-to-use-ngrok-when-testing-webhooks.html). Here's an example:
 
   ```bash
   $ ngrok http 1928 -host-header="localhost:1928"
