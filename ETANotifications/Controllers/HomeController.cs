@@ -12,6 +12,5 @@ namespace ETANotifications.Controllers
         {
             return View();
         }
-       
     }
 }

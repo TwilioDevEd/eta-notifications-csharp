@@ -12,21 +12,24 @@ namespace ETANotifications.Tests.Models
     {
         List<Order> orders = new List<Order>
                                 {
-                                    new Order {Id = 1,
-                                                CustomerName = "Jack",
-                                                CustomerPhoneNumber = "+4555555555",
-                                                Status = "Ready",
-                                                NotificationStatus = "None"},
-                                    new Order {Id = 2,
-                                                CustomerName = "Caesar",
-                                                CustomerPhoneNumber = "+678899000",
-                                                Status = "Ready",
-                                                NotificationStatus = "None"}
+                                    new Order {
+                                        Id = 1,
+                                        CustomerName = "Jack",
+                                        CustomerPhoneNumber = "+4555555555",
+                                        Status = "Ready",
+                                        NotificationStatus = "None"
+                                    },
+                                    new Order {
+                                        Id = 2,
+                                        CustomerName = "Caesar",
+                                        CustomerPhoneNumber = "+678899000",
+                                        Status = "Ready",
+                                        NotificationStatus = "None"
+                                    }
                                 };
 
         public void Dispose()
         {
-            
         }
 
         public Task<Order> FindAsync(int? id)

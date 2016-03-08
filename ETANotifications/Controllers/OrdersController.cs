@@ -16,7 +16,7 @@ namespace ETANotifications.Controllers
         private readonly IOrderRepository _orderRepository;
         private readonly INotificationService _notificationServices;
 
-        public OrdersController() : this(new OrderRepository(), new NotificationServices())
+        public OrdersController() : this(new OrderRepository(), new NotificationService())
         {
         }
 
@@ -39,11 +39,13 @@ namespace ETANotifications.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Order order = await _orderRepository.FindAsync(id);
             if (order == null)
             {
                 return HttpNotFound();
             }
+
             return View(order);
         }
 
@@ -54,10 +56,12 @@ namespace ETANotifications.Controllers
             Order order = await _orderRepository.FindAsync(id);
             order.Status = "Shipped";
             order.NotificationStatus = "Queued";
+
             await _orderRepository.UpdateAsync(order);
 
-            _notificationServices.SendSmsNotification(order.CustomerPhoneNumber
-                , "Your clothes will be sent and will be delivered in 20 minutes", GetCallbackUri(id));
+            _notificationServices.SendSmsNotification(order.CustomerPhoneNumber, 
+                "Your clothes will be sent and will be delivered in 20 minutes", GetCallbackUri(id));
+
             return RedirectToAction("Details", new { id = id });
         }
 
@@ -70,8 +74,8 @@ namespace ETANotifications.Controllers
             order.NotificationStatus = "Queued";
             await _orderRepository.UpdateAsync(order);
 
-            _notificationServices.SendSmsNotification(order.CustomerPhoneNumber
-                , "Your clothes have been delivered", GetCallbackUri(id));
+            _notificationServices.SendSmsNotification(order.CustomerPhoneNumber, 
+                "Your clothes have been delivered", GetCallbackUri(id));
             return RedirectToAction("Details", new { id = id });
         }
 

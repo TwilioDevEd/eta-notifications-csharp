@@ -65,7 +65,8 @@ namespace ETANotifications.Tests.Controllers
                 .ShouldRedirectTo<OrdersController>(c => c.Details(1));
 
             Assert.That(_orderRepository.FindAsync(1).GetAwaiter().GetResult().Status, Is.EqualTo("Shipped"));
-            _notificationServiceMock.Verify(c => c.SendSmsNotification(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Once());
+            _notificationServiceMock
+                .Verify(c => c.SendSmsNotification(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Once());
         }
 
         [Test]
@@ -77,7 +78,8 @@ namespace ETANotifications.Tests.Controllers
                 .ShouldRedirectTo<OrdersController>(c => c.Details(1));
 
             Assert.That(_orderRepository.FindAsync(1).GetAwaiter().GetResult().Status, Is.EqualTo("Delivered"));
-            _notificationServiceMock.Verify(c => c.SendSmsNotification(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Once());
+            _notificationServiceMock
+                .Verify(c => c.SendSmsNotification(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Once());
         }
 
         [Test]

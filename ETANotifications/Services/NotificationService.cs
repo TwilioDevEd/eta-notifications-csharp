@@ -8,7 +8,7 @@ namespace ETANotifications.Services
         void SendSmsNotification(string phoneNumber, string message, string statusCallback);
     }
 
-    public class NotificationServices : INotificationService
+    public class NotificationService : INotificationService
     {
         private readonly TwilioRestClient _twilioRestClient;
 
@@ -16,12 +16,12 @@ namespace ETANotifications.Services
         private readonly string _authToken = WebConfigurationManager.AppSettings["TwilioAuthToken"];
         private readonly string _twilioNumber = WebConfigurationManager.AppSettings["TwilioPhoneNumber"];
 
-        public NotificationServices()
+        public NotificationService()
         {
             _twilioRestClient = new TwilioRestClient(_accountSid, _authToken);
         }
 
-        public NotificationServices(TwilioRestClient twilioRestClient)
+        public NotificationService(TwilioRestClient twilioRestClient)
         {
             _twilioRestClient = twilioRestClient;
         }

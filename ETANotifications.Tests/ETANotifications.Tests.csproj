@@ -105,7 +105,7 @@
     <Compile Include="Controllers\OrdersControllerTest.cs" />
     <Compile Include="Models\InMemoryOrdersRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\NotificationServicesTest.cs" />
+    <Compile Include="Services\NotificationServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

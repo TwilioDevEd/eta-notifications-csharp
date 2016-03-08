@@ -7,7 +7,7 @@ namespace ETANotifications.Models
     {
         public int Id { get; set; }
 
-        [Required, Display(Name = "Customer name")]
+        [Required, Display(Name = "Customer Name")]
         public string CustomerName { get; set; }
 
         [Required, Phone, Display(Name = "Customer Phone Number")]
