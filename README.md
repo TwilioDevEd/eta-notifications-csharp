@@ -1,8 +1,14 @@
+<a href="https://www.twilio.com">
+  <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
+</a>
+
 # ETA Notifications Node. Powered by Twilio - ASP.NET MVC
 
 [![Build status](https://ci.appveyor.com/api/projects/status/yqxays3pbnjsau25?svg=true)](https://ci.appveyor.com/project/TwilioDevEd/eta-notifications-csharp)
 
 GPS tracking implementation with ASP.NET MVC and Twilio
+
+[Read the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/eta-notifications/csharp/mvc)!
 
 ### Local development
 

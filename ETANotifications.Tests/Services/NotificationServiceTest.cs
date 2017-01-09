@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ETANotifications.Services;
+﻿using ETANotifications.Services;
 using Moq;
 using NUnit.Framework;
-using Twilio;
+using Twilio.Clients;
+using Twilio.Http;
 
 namespace ETANotifications.Tests.Services
 {
@@ -14,20 +10,22 @@ namespace ETANotifications.Tests.Services
     public class NotificationServiceTest
     {
         [Test]
-        public void WhenSendANotification_AMessageIsSent()
+        public async void WhenSendANotification_AMessageIsSent()
         {
             var phoneNumber = "+5555555555";
             var message = "Message";
             var callbackUrl = "http://callback.com";
-            var twilioClientMock = new Mock<TwilioRestClient>("AccountSid", "AuthToken");
-            twilioClientMock
-                .Setup(c => c.SendMessage(phoneNumber, message, callbackUrl));
-                
+
+            var twilioClientMock = new Mock<ITwilioRestClient>();
+            twilioClientMock.Setup(c => c.AccountSid).Returns("AccountSID");
+            twilioClientMock.Setup(c => c.RequestAsync(It.IsAny<Request>()))
+                            .ReturnsAsync(new Response(System.Net.HttpStatusCode.Created, ""));
+
             var notificationServices = new NotificationService(twilioClientMock.Object);
-            notificationServices.SendSmsNotification(phoneNumber, message, callbackUrl);
+            await notificationServices.SendSmsNotification(phoneNumber, message, callbackUrl);
 
             twilioClientMock.Verify(
-                c => c.SendMessage(It.IsAny<string>(), phoneNumber, message, callbackUrl), Times.Once);
+                c => c.RequestAsync(It.IsAny<Request>()), Times.Once);
         }
     }
 }

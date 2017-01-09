@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
@@ -59,7 +58,7 @@ namespace ETANotifications.Controllers
 
             await _orderRepository.UpdateAsync(order);
 
-            _notificationServices.SendSmsNotification(order.CustomerPhoneNumber, 
+            await _notificationServices.SendSmsNotification(order.CustomerPhoneNumber, 
                 "Your clothes will be sent and will be delivered in 20 minutes", GetCallbackUri(id));
 
             return RedirectToAction("Details", new { id = id });
@@ -74,7 +73,7 @@ namespace ETANotifications.Controllers
             order.NotificationStatus = "Queued";
             await _orderRepository.UpdateAsync(order);
 
-            _notificationServices.SendSmsNotification(order.CustomerPhoneNumber, 
+            await _notificationServices.SendSmsNotification(order.CustomerPhoneNumber, 
                 "Your clothes have been delivered", GetCallbackUri(id));
             return RedirectToAction("Details", new { id = id });
         }
