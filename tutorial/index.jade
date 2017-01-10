@@ -28,7 +28,7 @@
   .step(
     data-title="Customer's notifications",
     data-file='ETANotifications/Controllers/OrdersController.cs'
-    data-highlight='50-76')
+    data-highlight='51-79')
     :markdown
       ## Trigger the Notifications
 
@@ -49,7 +49,7 @@
   
   .step(
     data-title='Creating a Twilio API Client',
-    data-file='ETANotifications/Services/NotificationServices.cs')
+    data-file='ETANotifications/Services/NotificationService.cs')
     :markdown
       ## Setting up the Twilio REST Client
 
@@ -68,32 +68,25 @@
   .step(
     data-title='Handling the Notification Trigger',
     data-file='ETANotifications/Controllers/OrdersController.cs',
-    data-highlight='59-60,73-74')
+    data-highlight='67-79')
     :markdown
       ## Handling the Notification Trigger
 
       This code handles the HTTP `POST` request triggered by the delivery
-      person. It uses our `INotificationServices` instance to send an SMS message to the
+      person. It uses our `INotificationService` instance to send an SMS message to the
       customer's phone number, which we have registered in our database.
 
       Next let's look closer at how we send the SMS.
 
   .step(
     data-title='Sending the Message',
-    data-file='ETANotifications/Services/NotificationServices.cs',
-    data-highlight='31')
+    data-file='ETANotifications/Services/NotificationService.cs',
+    data-highlight='32-41')
     :markdown
       ## Sending the Message
 
       Here is how we actually send the SMS. If we want to improve
-      the message we can send a picture of the laundry by adding:
-
-      ```
-      _twilioRestClient.SendMessage(_twilioNumber, 
-          phoneNumber, 
-          message, 
-          new []{"http://lorempixel.com/image_output/fashion-q-c-640-480-1.jpg"});
-      ```
+      the message we can send a picture of the laundry by usign the `mediaUrl` argument.
 
       In addition to the required parameters, we can pass a `status_callback`
       url to let us know if the message was delivered. Let's take a closer
@@ -103,7 +96,7 @@
   .step(
     data-title='Handling the Twilio Callback',
     data-file='ETANotifications/Controllers/OrdersController.cs',
-    data-highlight='78-87')
+    data-highlight='81-90')
     :markdown
       ## Handling the Twilio Callback
 
@@ -143,5 +136,4 @@
 
       Thanks for checking out this tutorial! If you have any feedback
       to share with us, we'd love to hear it. Tweet
-      [@twilio](//twitter.com/twilio) to let us know what you
-      think.
+      [Contact the Twilio Developer Education Team](mailto:deved-oss@twilio.com) to let us know what you think.
