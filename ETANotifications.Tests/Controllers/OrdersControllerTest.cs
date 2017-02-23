@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +31,8 @@ namespace ETANotifications.Tests.Controllers
             _notificationServiceMock = new Mock<INotificationService>();
 
             _notificationServiceMock
-                .Setup(c => c.SendSmsNotification(It.IsAny<String>(), It.IsAny<String>(), It.IsAny<String>()));
+                .Setup(c => c.SendSmsNotification(It.IsAny<String>(), It.IsAny<String>(), It.IsAny<String>()))
+                .Returns(Task.FromResult(default(object)));
         }
 
         [Test]
