@@ -1,34 +1,43 @@
-﻿using System.Web.Configuration;
-using Twilio;
+﻿using System;
+using System.Threading.Tasks;
+using System.Web.Configuration;
+using Twilio.Clients;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
 namespace ETANotifications.Services
 {
     public interface INotificationService
     {
-        void SendSmsNotification(string phoneNumber, string message, string statusCallback);
+        Task SendSmsNotification(string phoneNumber, string message, string statusCallback);
     }
 
     public class NotificationService : INotificationService
     {
-        private readonly TwilioRestClient _twilioRestClient;
-
+        private readonly ITwilioRestClient _client;
         private readonly string _accountSid = WebConfigurationManager.AppSettings["TwilioAccountSid"];
         private readonly string _authToken = WebConfigurationManager.AppSettings["TwilioAuthToken"];
         private readonly string _twilioNumber = WebConfigurationManager.AppSettings["TwilioPhoneNumber"];
 
         public NotificationService()
         {
-            _twilioRestClient = new TwilioRestClient(_accountSid, _authToken);
+            _client = new TwilioRestClient(_accountSid, _authToken);
         }
 
-        public NotificationService(TwilioRestClient twilioRestClient)
+        public NotificationService(ITwilioRestClient client)
         {
-            _twilioRestClient = twilioRestClient;
+            _client = client;
         }
 
-        public void SendSmsNotification(string phoneNumber, string message, string statusCallback)
+        public async Task SendSmsNotification(string phoneNumber, string message, string statusCallback)
         {
-            _twilioRestClient.SendMessage(_twilioNumber, phoneNumber, message, statusCallback);
+            var to = new PhoneNumber(phoneNumber);
+            await MessageResource.CreateAsync(
+                to,
+                from: new PhoneNumber(_twilioNumber),
+                body: message,
+                statusCallback: new Uri(statusCallback),
+                client: _client);
         }
     }
 }
