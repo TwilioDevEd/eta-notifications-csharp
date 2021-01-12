@@ -24,7 +24,7 @@ jobs:
       run: nuget restore WarmTransfer.sln
 
     - name: Set up local configuration
-      run: copy "ETANotifications.Web\Local.config.example" "ETANotifications.Web\Local.config"
+      run: copy "ETANotifications\Local.config.example" "ETANotifications\Local.config"
 
     - name: Build Web App
       run: msbuild ETANotifications.sln /verbosity:minimal
