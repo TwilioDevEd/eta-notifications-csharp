@@ -1,6 +1,7 @@
 ﻿using ETANotifications.Services;
 using Moq;
 using NUnit.Framework;
+using System.Threading.Tasks;
 using Twilio.Clients;
 using Twilio.Http;
 
@@ -10,7 +11,7 @@ namespace ETANotifications.Tests.Services
     public class NotificationServiceTest
     {
         [Test]
-        public async void WhenSendANotification_AMessageIsSent()
+        public async Task WhenSendANotification_AMessageIsSent()
         {
             var phoneNumber = "+5555555555";
             var message = "Message";

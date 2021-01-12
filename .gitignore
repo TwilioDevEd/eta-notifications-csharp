@@ -197,3 +197,7 @@ FakesAssemblies/
 
 # Project
 TwilioChat.Web/Local.config
+
+# Libman
+**/Scripts/lib/
+!.gitkeep
