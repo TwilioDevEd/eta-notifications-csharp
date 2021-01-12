@@ -1,0 +1,33 @@
+name: NetFx
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout Code
+
+    - name: Setup MSBuild Path
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1
+
+    - name: Restore NuGet Packages
+      run: nuget restore WarmTransfer.sln
+
+    - name: Set up local configuration
+      run: copy "ETANotifications.Web\Local.config.example" "ETANotifications.Web\Local.config"
+
+    - name: Build Web App
+      run: msbuild ETANotifications.sln /verbosity:minimal
+
+    - name: Run Tests with NUnit Console
+      run: .\packages\NUnit.ConsoleRunner.3.11.1\tools\nunit3-console ETANotifications.Tests\bin\Debug\ETANotifications.Tests.dll
