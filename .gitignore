@@ -196,7 +196,7 @@ FakesAssemblies/
 *.opt
 
 # Project
-TwilioChat.Web/Local.config
+ETANotifications/Local.config
 
 # Libman
 **/Scripts/lib/
