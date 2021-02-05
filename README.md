@@ -4,11 +4,16 @@
 
 # ETA Notifications Node. Powered by Twilio - ASP.NET MVC
 
-[![Build status](https://ci.appveyor.com/api/projects/status/yqxays3pbnjsau25?svg=true)](https://ci.appveyor.com/project/TwilioDevEd/eta-notifications-csharp)
+![](https://github.com/TwilioDevEd/eta-notifications-csharp/workflows/NetFx/badge.svg)
 
 GPS tracking implementation with ASP.NET MVC and Twilio
 
 [Read the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/eta-notifications/csharp/mvc)!
+
+### Requirements
+
+- [Visual Studio](https://visualstudio.microsoft.com/downloads/) 2019 or later.
+- SQL Server Express 2019 with [LocalDB support](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb)
 
 ### Local development
 
@@ -19,16 +24,8 @@ GPS tracking implementation with ASP.NET MVC and Twilio
    cd eta-notifications-csharp
    ```
 
-1. Create a new file `ETANotifications/Local.config` and update the content with
+1. Rename the file `ETANotifications/Local.config.example` to `ETANotifications/Local.config` and update the content with your info.
 
-   ```
-    <appSettings>
-      <add key="TwilioAccountSid" value="your_account_SID" />
-      <add key="TwilioAuthToken" value="your_twilio_auth_token" />
-      <add key="TwilioPhoneNumber" value="your_twilio_number" />
-      <add key="TestDomain" value="[your-ngrok-subdomain].ngrok.io"/>
-    </appSettings>
-   ```
    Be sure to replace placeholders like `your_account_SID`, `your_twilio_auth_token` and `your_twilio_number` with valid information from your
    [Twilio Account Settings](https://www.twilio.com/user/account/settings).
 
@@ -36,11 +33,16 @@ GPS tracking implementation with ASP.NET MVC and Twilio
 
 1. Build the solution
 
+1. Open `ETANotifications.Web/Migrations/Configuration.cs` and update the the list of orders accordingly to your requirements. 
+    
+    NOTE: You need to change the phone numbers with the ones you own so you can see the notifications.
+
 1. Run migrations by executing the following in the Package Manager Console
 
   	```bash
     PM> Update-Database
     ```
+    *(Be sure to check that your database server name matches the one from the connection string on `Web.config`. For reference, default values where used upon SQLServer installation)*
 
 1. Run the application
 

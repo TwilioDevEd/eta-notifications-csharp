@@ -1,0 +1,6 @@
+<appSettings>
+  <add key="TwilioAccountSid" value="your_account_SID" />
+  <add key="TwilioAuthToken" value="your_twilio_auth_token" />
+  <add key="TwilioPhoneNumber" value="your_twilio_number" />
+  <add key="TestDomain" value="[your-ngrok-subdomain].ngrok.io"/>
+</appSettings>
