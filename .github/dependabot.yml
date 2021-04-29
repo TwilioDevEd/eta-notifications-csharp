@@ -1,0 +1,132 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/ETANotifications"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microsoft.IdentityModel.Tokens
+    versions:
+    - 6.10.0
+    - 6.10.1
+    - 6.10.2
+    - 6.9.0
+  - dependency-name: Microsoft.IdentityModel.Logging
+    versions:
+    - 6.10.0
+    - 6.10.1
+    - 6.10.2
+    - 6.9.0
+  - dependency-name: Microsoft.IdentityModel.JsonWebTokens
+    versions:
+    - 6.10.0
+    - 6.10.1
+    - 6.10.2
+    - 6.9.0
+  - dependency-name: System.IdentityModel.Tokens.Jwt
+    versions:
+    - 6.10.0
+    - 6.10.1
+    - 6.10.2
+    - 6.8.0
+    - 6.9.0
+  - dependency-name: Twilio
+    versions:
+    - 5.53.1
+    - 5.54.0
+    - 5.56.0
+    - 5.57.0
+    - 5.58.0
+  - dependency-name: Microsoft.Net.Compilers
+    versions:
+    - 3.8.0
+  - dependency-name: Microsoft.CodeDom.Providers.DotNetCompilerPlatform
+    versions:
+    - 3.6.0
+  - dependency-name: EntityFramework
+    versions:
+    - 6.4.4
+  - dependency-name: bootstrap
+    versions:
+    - 3.4.1
+  - dependency-name: Microsoft.AspNet.Identity.Core
+    versions:
+    - 2.2.3
+  - dependency-name: Microsoft.AspNet.Razor
+    versions:
+    - 3.2.7
+  - dependency-name: Modernizr
+    versions:
+    - 2.8.3
+  - dependency-name: Antlr
+    versions:
+    - 3.5.0.2
+  - dependency-name: Respond
+    versions:
+    - 1.4.2
+- package-ecosystem: nuget
+  directory: "/ETANotifications.Tests"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microsoft.IdentityModel.JsonWebTokens
+    versions:
+    - 6.10.0
+    - 6.10.1
+    - 6.10.2
+    - 6.9.0
+  - dependency-name: System.IdentityModel.Tokens.Jwt
+    versions:
+    - 6.10.0
+    - 6.10.1
+    - 6.10.2
+    - 6.8.0
+    - 6.9.0
+  - dependency-name: Microsoft.IdentityModel.Logging
+    versions:
+    - 6.10.0
+    - 6.10.1
+    - 6.10.2
+    - 6.9.0
+  - dependency-name: Microsoft.IdentityModel.Tokens
+    versions:
+    - 6.10.0
+    - 6.10.1
+    - 6.10.2
+    - 6.8.0
+    - 6.9.0
+  - dependency-name: Twilio
+    versions:
+    - 5.53.1
+    - 5.54.0
+    - 5.56.0
+    - 5.57.0
+    - 5.58.0
+  - dependency-name: NUnit
+    versions:
+    - 3.13.0
+    - 3.13.1
+  - dependency-name: Portable.BouncyCastle
+    versions:
+    - 1.8.10
+    - 1.8.9
+  - dependency-name: Moq
+    versions:
+    - 4.16.0
+  - dependency-name: RestSharp
+    versions:
+    - 106.11.7
+  - dependency-name: Newtonsoft.Json
+    versions:
+    - 12.0.3
+  - dependency-name: Microsoft.AspNet.Razor
+    versions:
+    - 3.2.7
+  - dependency-name: Microsoft.AspNet.Mvc
+    versions:
+    - 5.2.7
+  - dependency-name: Microsoft.AspNet.WebPages
+    versions:
+    - 3.2.7
